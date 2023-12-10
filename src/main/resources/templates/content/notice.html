@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+    
+    <th:block layout:fragment="head">
+    	<title>notice</title>
+		
+        <!--/* css */-->
+        <link th:href="@{/css/common.css}" rel="stylesheet" />
+    </th:block>
+    <body>
+		<table>
+	        <tr>
+				<th>글 번호</th>
+	            <th>유저 아이디</th>
+	            <th>제목</th>
+	            <th>내용</th>
+	            <th>이미지</th>
+	            <th>작성일</th>
+	            <th>조회수</th>
+	        </tr>
+	        <th:block th:each="notice : ${noticeList}" class="noticeList">
+	            <tr>
+					<td th:text="${ notice.noticeNumber }"></td>
+	                <td th:text="${ notice.memberId }"></td>
+	                <td th:text="${ notice.noticeTitle }"></td>
+	                <td th:text="${ notice.noticeContext }"></td>
+	                <td th:text="${ notice.noticeImg }"></td>
+	                <td th:text="${ notice.noticeWriteTime }"></td>
+	                <td th:text="${ notice.noticeView }"></td>
+	            </tr>
+	        </th:block>
+	    </table>
+			<button onclick="mainHome()">홈</button>
+			<button onclick="noticeWrite()">글 쓰기</button>
+				   	
+	   	<script th:inline="javascript">
+			function mainHome(){
+				window.location.href = '/home';
+			};
+			
+			function noticeWrite(){
+				window.location.href = '/notice/write';
+			};
+		</script>
+    </body>
+</html>

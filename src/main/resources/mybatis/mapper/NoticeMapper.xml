@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.NoticeMapper">
+	
+	<select id="noticeList" resultType="NoticeModel">
+		SELECT * FROM notice;
+	</select>
+	
+
+	<select id="noticeListOne" resultType="NoticeModel" parameterType="int">
+		SELECT * FROM notice WHERE noticeNumber = #{noticeNumber};
+	</select>
+
+	<insert id="noticeInsert" parameterType="NoticeModel">
+		INSERT INTO notice (memberId, noticeTitle, 
+		noticeContext, noticeImg, noticeWriteTime, 
+		noticeUpdateTime, noticeView)
+        VALUES (#{memberId}, #{noticeTitle}, 
+        #{noticeContext}, #{noticeImg}, #{noticeWriteTime}, 
+        null, 0);
+	</insert>
+	
+	<update id="noticeUpdate" parameterType="NoticeModel">
+		UPDATE notice SET 
+		noticeTitle = #{noticeTitle}, noticeContext = #{noticeContext},
+		noticeImg = #{noticeImg}, noticeUpdateTime = #{noticeUpdateTime}
+		WHERE noticeNumber = #{noticeNumber};
+	</update>
+	
+	<delete id="noticeDelete" parameterType="int">
+		DELETE FROM notice WHERE noticeNumber = #{noticeNumber};
+	</delete>
+
+</mapper>

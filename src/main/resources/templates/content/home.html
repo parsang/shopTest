@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+    
+    <th:block layout:fragment="head">
+    	<title>Spring Boot</title>
+		
+        <!--/* css */-->
+        <link th:href="@{/css/common.css}" rel="stylesheet" />
+    </th:block>
+    <body>
+		<table border="1">
+	        <tr>
+	            <th>유저 아이디</th>
+	            <th>유저 비밀번호</th>
+	            <th>유저 이름</th>
+	            <th>유저 주민번호 앞자리</th>
+	            <th>유저 주민번호 뒷자리</th>
+	            <th>유저 이메일 주소</th>
+	           	<th>유저 핸드폰 번호</th>
+	            <th>유저 가입날짜</th>
+	        </tr>
+	        <th:block th:each="member : ${memberList}">
+	            <tr>
+	                <td th:text="${ member.member_id }"></td>
+	                <td th:text="${ member.member_pw }"></td>
+	                <td th:text="${ member.member_name }"></td>
+	                <td th:text="${ member.member_front_RRN }"></td>
+	                <td th:text="${ member.member_back_RRN }"></td>
+	                <td th:text="${ member.member_address }"></td>
+	                <td th:text="${ member.member_phone }"></td>
+	                <td th:text="${ member.member_join_date }"></td>
+	            </tr>
+	        </th:block>
+	    </table>
+			<input type="button" value="게시판 홈" onclick="noticeHome()">
+	   		
+	   		<script>
+			function noticeHome(){
+				window.location.href = '/notice';
+			};
+			
+			function noticeWrite(){
+				window.location.href = '/notice/write';
+			};
+			
+			document.querySelector('.noticetList').addEventListener('click', function(){
+				window.location.href = "@{/notice/{Number}(Number=${notice.noticeNumber})}";
+			});
+		</script>
+    </body>
+</html>

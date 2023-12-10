@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+    <th:block layout:fragment="head">
+        <title>noticeDetail</title>
+        <!--/* css */-->
+        <link th:href="@{/css/common.css}" rel="stylesheet" />
+    </th:block>
+
+    <body>
+        <table>
+            <tr>
+				<th>글 번호</th>
+                <th>유저 아이디</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>이미지</th>
+                <th>작성일</th>
+                <th>조회수</th>
+            </tr>
+            <tr th:each="noticeOne : ${noticeListOne}" class="noticeList">
+                <td th:text="${noticeOne.noticeNumber}"></td>
+                <td th:text="${noticeOne.memberId}"></td>
+                <td th:text="${noticeOne.noticeTitle}"></td>
+                <td th:text="${noticeOne.noticeContext}"></td>
+                <td th:text="${noticeOne.noticeImg}"></td>
+                <td th:text="${noticeOne.noticeWriteTime}"></td>
+                <td th:text="${noticeOne.noticeView}"></td>
+            </tr>
+        </table>
+
+        <button onclick="noticeHome()">홈</button>
+        <button onclick="UpdateNotice()">수정</button>
+        <button onclick="DeleteNotice()">삭제</button>
+
+        <script>;
+            function noticeHome() {
+                window.location.href = '/home';
+            };
+            
+            function UpdateNotice() {
+                window.location.href = '/noticeUpdate/';
+            };
+            
+            function DeleteNotice() {
+                window.location.href = '/noticeDelete/';
+            };
+        </script>
+    </body>
+</html>

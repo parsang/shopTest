@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+    
+    <th:block layout:fragment="head">
+    	<title>noticeUpdate</title>
+		
+        <!--/* css */-->
+        <link th:href="@{/css/common.css}" rel="stylesheet" />
+    </th:block>
+    <body>
+		<form th:action="@{/notice/write/update}" th:object="${noticeListOneModel}" method="post">
+		    <div class="noticeDetail-container">
+				<h4>게시글 수정</h4>
+				<div class="noticeDetail-header-box">
+					<div class="noticeDetail-title">
+						<input type="text" th:field="*{noticeTitle}" th:value="${noticeListOneModel.noticeTitle}" placeholder="글제목"></input>
+					</div>
+					<div class="noticeDetail-member_id">
+						<span th:field="*{memberId}">admin</span>
+					</div>
+					<div class="noticeDetail-write_time">
+						<span th:field="*{noticeWriteTime}">2023-12-06 15:00:00</span>
+					</div>
+				</div>
+				<div class="noticeDetail-context">
+					<textarea th:field="*{noticeContext}" th:value="${noticeListOneModel.noticeContext}" placeholder="글내용"></textarea>
+		    	</div>
+		    	<div>
+					<input type="file" th:field="*{noticeImg}" th:value="${noticeModel.noticeImg}" accept="image/*">
+				</div>
+				<div class="noticeDetail-botton-box">
+					<button type="submit">수정완료</button>
+					<input type="button" value="게시판 홈" onclick="noticeHome()">
+				</div>
+			</div>
+			
+		</form>
+		<script>
+			function noticeHome(){
+				window.location.href = '/notice';
+			};
+		</script>
+</html>
